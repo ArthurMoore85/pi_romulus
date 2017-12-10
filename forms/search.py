@@ -5,10 +5,12 @@
 :author: Arthur Moore <arthur.moore85@gmail.com>
 :date: 31/12/16
 """
-import npyscreen as npyscreen
 import sys
+
+import npyscreen as npyscreen
+
+from api.providers import EmuApi
 from forms.results import ResultsForm
-from scraping.scraper import Scraper
 
 __author__ = 'arthur'
 
@@ -18,14 +20,14 @@ def clean_results_list(results):
     Returns a clean list of results
     """
     results_list = []
-    for rom in results:
-        text = rom.text
-        clean = text.replace('ROMSystem:', '| ')
-        clean = clean.replace('ISOSystem:', '| ')
-        clean = clean.replace('Size:', '')
-        clean = " ".join(clean.split()[:-1])
-        results_list.append(clean)
-    return results_list, results
+    results_dict = {}
+    count = 0
+    for rom in results.all():
+        display = '{0} - {1}'.format(rom.name, rom.system)
+        results_dict[count] = rom
+        results_list.append(display)
+        count += 1
+    return results_list, results_dict
 
 
 class SearchForm(npyscreen.ActionForm):
@@ -44,8 +46,10 @@ class SearchForm(npyscreen.ActionForm):
         Carried out when OK button is pressed
         """
         npyscreen.notify("Please wait", "Searching...")
-        self.search = Scraper(self.rom.value, parent=self)
-        self.results = clean_results_list(self.search.fill_in_form())
+        self.emu = EmuApi()
+        self.search = self.emu.search(self.rom.value)
+        # self.search = Scraper(self.rom.value, parent=self)
+        self.results = clean_results_list(self.search)
         self.clean_results = self.results[0]
         self.parentApp.SCRAPER_OBJ = self.search
         self.parentApp.CLEAN_RESULTS = self.clean_results

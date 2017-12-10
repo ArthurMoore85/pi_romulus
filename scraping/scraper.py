@@ -19,7 +19,7 @@ __author__ = 'arthur'
 
 
 class Scraper(object):
-    def __init__(self, rom, parent=None):
+    def __init__(self, rom=None, parent=None):
         """
         Scrapes a website
         :param search_query: User search query
@@ -137,8 +137,8 @@ class Scraper(object):
         For that reason, we must follow the redirects with mechanize.
         After which we will download the file required.
         """
-        link = self.download_link(url)
-        req = urllib2.Request(link)
+        link = url
+        req = urllib2.Request(url)
         req.add_header('Referer', 'https://www.emuparadise.me/')
         file_name = urllib2.unquote(link.split('/')[-1])
         target_file_name = os.path.join(location, file_name)

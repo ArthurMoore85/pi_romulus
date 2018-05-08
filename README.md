@@ -53,4 +53,4 @@ You can also reach out to me directly.
 
 Authors
 -------
-Arthur Moore <arthur.moore85@gmail.com>
+Arthur Moore <arthur.moore85@gmail.com >

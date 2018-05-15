@@ -10,6 +10,10 @@ from forms import SearchForm
 
 __author__ = 'arthur'
 
+# Switch to True for debugging. Set settings in PyCharm
+# to handle remote debugging on localhost port 5678
+DEBUG = True
+
 
 class App(npyscreen.NPSAppManaged):
     """
@@ -26,6 +30,9 @@ class App(npyscreen.NPSAppManaged):
         """
         Initialize the forms.
         """
+        if DEBUG:
+            import pydevd
+            pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True)
         self.addForm('MAIN', SearchForm, name="Search for ROM")
 
 

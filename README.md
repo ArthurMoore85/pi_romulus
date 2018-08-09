@@ -4,6 +4,9 @@
 [![Build Status](https://travis-ci.org/ArthurMoore85/pi_romulus.svg?branch=master)](https://travis-ci.org/ArthurMoore85/pi_romulus)
 
 **NOTE
+
+DUE TO THE DECISION BY EMUPARADISE TO NO LONGER HOST ROMS, I REGRET TO INFORM THAT CURRENTLY PI ROMULUS NO LONGER WORKS. I AM CURRENTLY LOOKING TO FIXING THIS ISSUE.
+
 Development of Pi Romulus is done [at GitLab](https://gitlab.com/arthurmoore85/pi_romulus).**
 
 **This repository will be kept up to date with releases from Pi Romulus, but only with releases and not during active development. For development versions, please visit the Gitlab page.**

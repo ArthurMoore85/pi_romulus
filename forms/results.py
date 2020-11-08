@@ -27,7 +27,9 @@ class ResultsForm(npyscreen.ActionForm):
     def afterEditing(self):
         selected_option = self.parentApp.SELECTED_RESULT
         try:
-            selection = self.parentApp.RESULTS[selected_option]
+            selection = self.parentApp.RESULTS.get(selected_option)
+            if not selection:
+                npyscreen.notify_wait("Please select a ROM by hitting ENTER on your selection", "Selection error")
             self.search = self.parentApp.SCRAPER_OBJ
             download_thread = ThreadDownload(selection=selection)
             download_thread.start()

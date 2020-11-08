@@ -10,10 +10,12 @@
 from __future__ import unicode_literals
 
 from .emuapi import EmuApi
+from .romsdownload import RomsDownloadApi
 
 __author__ = "arthur"
 
 
 __all__ = [
-    'EmuApi'
+    'EmuApi',
+    'RomsDownloadApi'
 ]

@@ -140,7 +140,8 @@ class Api(object):
         :param result_item: ResultItem object.
         """
         self.current_url = result_item.download_url
-        location = os.path.join(PlatformBase().download_location, result_item.system_dir)
+        location = os.path.join(
+            PlatformBase().download_location, result_item.system_dir)
 
         # Check if the ROM directory exists, if not, create it.
         if not os.path.exists(location):

@@ -9,7 +9,7 @@ import sys
 
 import npyscreen as npyscreen
 
-from api.providers import EmuApi
+from api.providers import EmuApi, RomsDownloadApi
 from forms.results import ResultsForm
 
 __author__ = 'arthur'
@@ -35,6 +35,7 @@ class SearchForm(npyscreen.ActionForm):
     This form presents the user with a search form from where they can search for a
     ROM or other game from EmuParadise.
     """
+
     def create(self):
         """
         Creates form upon initialization by main app.
@@ -46,8 +47,8 @@ class SearchForm(npyscreen.ActionForm):
         Carried out when OK button is pressed
         """
         npyscreen.notify("Please wait", "Searching...")
-        self.emu = EmuApi()
-        self.search = self.emu.search(self.rom.value)
+        self.romsdownload = RomsDownloadApi()
+        self.search = self.romsdownload.search(self.rom.value)
         # self.search = Scraper(self.rom.value, parent=self)
         self.results = clean_results_list(self.search)
         self.clean_results = self.results[0]

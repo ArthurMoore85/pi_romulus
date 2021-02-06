@@ -1,12 +1,8 @@
-image: ubuntu:latest
+image: ubuntu:xenial
 
 types:
-  - build
   - test
-
-build_app:
-  type: build
-  script: echo Building!
+  - tag
 
 test_app:
   type: test

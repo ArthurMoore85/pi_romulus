@@ -3,7 +3,7 @@
 [![Code Health](https://landscape.io/github/ArthurMoore85/pi_romulus/master/landscape.svg?style=flat)](https://landscape.io/github/ArthurMoore85/pi_romulus/master)
 [![Build Status](https://travis-ci.org/ArthurMoore85/pi_romulus.svg?branch=master)](https://travis-ci.org/ArthurMoore85/pi_romulus)
 
-Development of Pi Romulus is done [at GitLab](https://gitlab.com/arthurmoore85/pi_romulus).\*\*
+Development of Pi Romulus is done [at GitLab](https://gitlab.com/arthurmoore85/pi_romulus).**
 
 **This repository will be kept up to date with releases from Pi Romulus, but only with releases and not during active development. For development versions, please visit the Gitlab page.**
 
@@ -18,15 +18,14 @@ You dont need to switch on your laptop to download and transfer the games. Just 
 keyboard to your Retropie, or ssh into the Pi, search for the game, select and play.
 
 Features:
+* Searching ROMs (uses RomDownload)
+* Automatic detection of required emulator
+* Automatic ROM extraction, if ROM arrives in an archive
+* Places ROMs in the correct folder for direct playability
+* Download notification
 
-- Searching ROMs (uses Emuparadise)
-- Automatic detection of required emulator
-- Automatic ROM extraction, if ROM arrives in an archive
-- Places ROMs in the correct folder for direct playability
-- Download notification
-
-## Technical Details
-
+Technical Details
+-----------------
 Romulus is written using Python 2.7.
 For it's GUI framework it makes use of the excellent npyscreen library.
 

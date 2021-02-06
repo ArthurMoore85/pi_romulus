@@ -18,6 +18,7 @@ class ResultSet(object):
     """
     ResultSet object.
     """
+
     def __init__(self, *args, **kwargs):
         self._raw_item_objects = kwargs.get('results', [])
         self._caller = kwargs.get('caller', None)
@@ -40,12 +41,12 @@ class ResultSet(object):
         objs = []
         count = 0
 
-        for item in self._raw_item_objects:
-            download_id = self._get_download_id(item[0])
-            download_url = self._caller.download_url if self._caller.download_url else item[0]
-            objs.append(ResultItem(id=count, download_url=download_url, name=item[1],
-                       system_id=item[2], system=item[3], download_id=download_id,
-                       filesize=item[4], token=self._caller.token))
+        for item, values in self._raw_item_objects.items():
+            download_id = values['download_id']
+            download_url = values['game_link']
+            objs.append(ResultItem(id=count, download_url=download_url, name=values['game_name'],
+                                   system_id=0, system=values['system_name'], download_id=download_id,
+                                   filesize='NA', token=self._caller.token))
             count += 1
         return set(objs)
 

@@ -12,22 +12,24 @@ from __future__ import unicode_literals
 import threading
 
 from api.providers.emuapi import EmuApi
+from api.providers.romsdownload import RomsDownloadApi
 
 __author__ = "arthur"
+
 
 class ThreadDownload(threading.Thread):
     """
     Downloads the ROM in a new thread,
     """
+
     def __init__(self, selection):
         threading.Thread.__init__(self)
         self.selection = selection
-        
 
     def run(self):
         """
         Start the download thread.
         """
         if self.selection:
-            self.emu = EmuApi()
+            self.emu = RomsDownloadApi()
             self.emu.download(self.selection)

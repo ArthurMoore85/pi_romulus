@@ -27,15 +27,32 @@ COUNTRIES = {
 }
 
 SYSTEMS = {
-    'Amstrad CPC': 'amstradcpc', 'Atari 2600': 'atari2600', 'Atari 7800': 'atari7800', 'Atari Lynx': 'atarilynx',
-    'M.A.M.E. - Multiple Arcade Machine Emulator': 'mame-libretro',
-    'Neo Geo': 'neogeo', 'Neo Geo Pocket - Neo Geo Pocket Color': 'ngp', 'Nintendo 64': 'n64',
-    'Nintendo Entertainment System': 'nes', 'Nintendo Famicom Disk System': 'fds', 'Nintendo Game Boy': 'gb',
-    'Nintendo Game Boy Color': 'gbc', 'Nintendo Gameboy Advance': 'gba', 'PC Engine - TurboGrafx16': 'pcengine',
-    'PSP': 'psp', 'Sega 32X': 'sega32x', 'Sega CD': 'segacd', 'Sega Game Gear': 'gamegear',
-    'Sega Genesis - Sega Megadrive': 'megadrive', 'Sega Master System': 'mastersystem', 'Sony Playstation': 'psx',
-    'Super Nintendo Entertainment System': 'snes', 'ZX Spectrum': 'zxspectrum', 'Sega Dreamcast': 'dreamcast',
-    'Nintendo DS': 'nds', 'ScummVM': 'scummvm'
+    'Amstrad CPC': 'amstradcpc',
+    'Atari 2600': 'atari2600',
+    'Atari 7800': 'atari7800',
+    'Atari Lynx': 'atarilynx',
+    'MAME': 'mame-libretro',
+    'Neo Geo': 'neogeo',
+    'Neo Geo Pocket Color': 'ngp',
+    'Nintendo 64': 'n64',
+    'Nintendo': 'nes',
+    'Nintendo Famicom Disk System': 'fds',
+    'Gameboy': 'gb',
+    'Gameboy Color': 'gbc',
+    'Gameboy Advance': 'gba',
+    'TurboGrafx 16': 'pcengine',
+    'Playstation Portable': 'psp',
+    'Sega 32X': 'sega32x',
+    'Sega CD': 'segacd',
+    'Game Gear': 'gamegear',
+    'Sega Genesis': 'megadrive',
+    'Sega Master System': 'mastersystem',
+    'Sony Playstation': 'psx',
+    'Super Nintendo': 'snes',
+    'ZX Spectrum': 'zxspectrum',
+    'Sega Dreamcast': 'dreamcast',
+    'Nintendo DS': 'nds',
+    'ScummVM': 'scummvm'
 }
 
 
@@ -43,6 +60,7 @@ class ResultItem(object):
     """
     ResultItem object.
     """
+
     def __init__(self, *args, **kwargs):
         self.id = kwargs.get('id')
         self.has_country = False
@@ -63,7 +81,8 @@ class ResultItem(object):
             'download_id': self.download_id,
             'token': self.token
         }
-        self.download_url = kwargs.get('download_url').format(**self._arguments)
+        self.download_url = kwargs.get(
+            'download_url').format(**self._arguments)
 
     def __repr__(self):
         return '<ResultItem: {0} - {1}>'.format(self.id, self.name)
@@ -88,7 +107,8 @@ class ResultItem(object):
         This is done because by default, lots of titles come with
         'ROM' or other rubbish that is of no use.
         """
-        countries = ('(JPN)', '(USA)', '(EU)', '(JAPAN)', '(EUROPE)', '(E)', '(U)', '(J)')
+        countries = ('(JPN)', '(USA)', '(EU)', '(JAPAN)',
+                     '(EUROPE)', '(E)', '(U)', '(J)')
 
         if not name:
             # In case the name was not supplied to ResultItem.
@@ -113,24 +133,25 @@ class ResultItem(object):
         Sets the filesizes.
         """
         filesize = filesize.upper()
-        if filesize:
-            if '.' in filesize:
-                first_val, second_val = filesize.split('.')
-                denom_type = second_val[-1]
-                second_val = second_val[:-1]
+        if filesize != 'NA':
+            if filesize:
+                if '.' in filesize:
+                    first_val, second_val = filesize.split('.')
+                    denom_type = second_val[-1]
+                    second_val = second_val[:-1]
 
-                first_val = int(first_val)
-                second_val = int(second_val)
-            else:
-                denom_type = filesize[-1]
-                first_val = int(filesize[:-1])
-                second_val = 0
-                
-            if denom_type == 'K':
-                self.filesize_kb = first_val
-            if denom_type == 'M':
-                self.filesize_mb = first_val
-                self.filesize_kb = second_val * 100
-            if denom_type == 'G':
-                self.filesize_gb = first_val
-                self.filesize_mb = second_val * 100
+                    first_val = int(first_val)
+                    second_val = int(second_val)
+                else:
+                    denom_type = filesize[-1]
+                    first_val = int(filesize[:-1])
+                    second_val = 0
+
+                if denom_type == 'K':
+                    self.filesize_kb = first_val
+                if denom_type == 'M':
+                    self.filesize_mb = first_val
+                    self.filesize_kb = second_val * 100
+                if denom_type == 'G':
+                    self.filesize_gb = first_val
+                    self.filesize_mb = second_val * 100

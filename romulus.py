@@ -6,7 +6,7 @@
 :date: 31/12/16
 """
 import npyscreen as npyscreen
-from forms import SearchForm
+from forms import FilterForm
 
 __author__ = 'arthur'
 
@@ -35,7 +35,7 @@ class App(npyscreen.NPSAppManaged):
             # debugging for PyCharm and Visual Studio Code.
             import ptvsd
             ptvsd.enable_attach("my_secret", address=('localhost', 3000))
-        self.addForm('MAIN', SearchForm, name="Search for ROM")
+        self.addForm('MAIN', FilterForm, name="System filter ")
 
 
 if __name__ == '__main__':

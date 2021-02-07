@@ -96,7 +96,28 @@ class RomsDownloadApi(Api):
 
         return games
 
-    def search(self, query, system=0):
+    def filter_system(self, results, systems=[]):
+        """
+        Flters the results based on filtered systems
+        requested by user.
+
+        Args:
+            results (dict): Returned results from RomDownload
+            systems (list, optional): Systems to show. Defaults to [].
+        """
+        if not systems:
+            return results
+
+        filtered_results = {}
+        counter = 0
+        for _, result in results.items():
+            if result['system_name'] in systems:
+                filtered_results[counter] = result
+                counter += 1
+
+        return filtered_results
+
+    def search(self, query, show_all, systems):
         """
         Overrides the search method to list the games available.
         """
@@ -104,16 +125,13 @@ class RomsDownloadApi(Api):
         search_url = "https://romsdownload.net/search?name={query}".format(
             query=query)
         returns = requests.get(search_url).content
-        # search_results = re.findall(
-        #     self.search_regex,
-        #     self._site_request(
-        #         search_url,
-        #         data=dict(query=query, section='roms', sysid=system)
-        #     ).content
-        # )
         bs = BeautifulSoup(returns, "html.parser")
         search_results = self.extract_table(bs)
-        results = ResultSet(results=search_results, caller=self)
+        if not show_all:
+            filtered = self.filter_system(search_results, systems)
+        else:
+            filtered = search_results
+        results = ResultSet(results=filtered, caller=self)
 
         return results
 
@@ -215,17 +233,5 @@ class RomsDownloadApi(Api):
         filename = urllib2.unquote(self.current_url.split('/')[-1])
         target_file_name = os.path.join(location, filename)
         urllib.urlretrieve(self.current_url, target_file_name)
-        # with open(target_file_name, 'wb') as code:
-        #     total_length = f.headers.get('content-length')
-        #     if not total_length:
-        #         code.write(f.content)
-        #     else:
-        #         total_length = int(total_length)
-        #         while True:
-        #             data = f.read(total_length / 100)
-        #             if not data:
-        #                 break
-        #             code.write(data)
-        #
         ex = Compression(location)
         ex.extract(target_file_name)

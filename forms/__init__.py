@@ -7,11 +7,13 @@
 """
 from forms.search import SearchForm
 from forms.results import ResultsForm
+from forms.filter import FilterForm
 
 __author__ = 'arthur'
 
 
 __all__ = [
     'SearchForm',
-    'ResultsForm'
+    'ResultsForm',
+    'FilterForm'
 ]

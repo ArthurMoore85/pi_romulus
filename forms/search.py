@@ -48,7 +48,11 @@ class SearchForm(npyscreen.ActionForm):
         """
         npyscreen.notify("Please wait", "Searching...")
         self.romsdownload = RomsDownloadApi()
-        self.search = self.romsdownload.search(self.rom.value)
+        self.search = self.romsdownload.search(
+            self.rom.value,
+            self.parentApp.SHOW_ALL,
+            self.parentApp.FILTERED_SYSTEMS
+        )
         # self.search = Scraper(self.rom.value, parent=self)
         self.results = clean_results_list(self.search)
         self.clean_results = self.results[0]

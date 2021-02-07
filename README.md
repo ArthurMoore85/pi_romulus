@@ -1,13 +1,10 @@
 # Pi Romulus
 
-[![Code Health](https://landscape.io/github/ArthurMoore85/pi_romulus/master/landscape.svg?style=flat)](https://landscape.io/github/ArthurMoore85/pi_romulus/master)
-[![Build Status](https://travis-ci.org/ArthurMoore85/pi_romulus.svg?branch=master)](https://travis-ci.org/ArthurMoore85/pi_romulus)
-
 Development of Pi Romulus is done [at GitLab](https://gitlab.com/arthurmoore85/pi_romulus).**
 
 **This repository will be kept up to date with releases from Pi Romulus, but only with releases and not during active development. For development versions, please visit the Gitlab page.**
 
-Retropie ROM downloader (v.1.2.3)
+Retropie ROM downloader (v.2.1.0)
 
 Based on Romulus, the Linux Retropie ROM manager, Pi Romulus is intended to fill a gaping hole
 in the Retropie functionality.
@@ -23,6 +20,7 @@ Features:
 * Automatic ROM extraction, if ROM arrives in an archive
 * Places ROMs in the correct folder for direct playability
 * Download notification
+* Filtering by systems
 
 Technical Details
 -----------------

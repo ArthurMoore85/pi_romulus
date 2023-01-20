@@ -3,7 +3,7 @@ beautifulsoup4==4.5.1
 bs4==0.0.1
 EasyProcess==0.2.3
 libarchive==0.4.3
-mechanize==0.2.5
+mechanize==0.4.6
 nose==1.3.7
 npyscreen==4.10.5
 patool==1.12
